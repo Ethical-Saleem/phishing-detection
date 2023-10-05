@@ -247,9 +247,9 @@ class FeatureExtraction:
 def getAttributess(url):
     
     feature_ext = FeatureExtraction()
-    protocol = feature_ext.getProtocol(url)
-    path = feature_ext.getPath(url)
-    domain = feature_ext.getDomain(url)
+    # protocol = feature_ext.getProtocol(url)
+    # path = feature_ext.getPath(url)
+    # domain = feature_ext.getDomain(url)
     having_ip = feature_ext.havingIP(url)
     len_url = feature_ext.long_url(url)
     having_at_symbol = feature_ext.have_at_symbol(url)
@@ -257,20 +257,30 @@ def getAttributess(url):
     prefix_suffix_separation = feature_ext.prefix_suffix_separation(url)
     sub_domains = feature_ext.sub_domains(url)
     tiny_url = feature_ext.shortening_service(url)
-    web_traffic = feature_ext.web_traffic(url)
+    # web_traffic = feature_ext.web_traffic(url)
     domain_registration_length = feature_ext.domain_registration_length(url)
     dns_record = feature_ext.dns_record(url)
     statistical_report = feature_ext.statistical_report(url)
     age_domain = feature_ext.age_domain(url)
     http_tokens = feature_ext.https_token(url)
     
-    data_col={'Protocol':pd.Series(protocol),'Domain':pd.Series(domain),'Path':pd.Series(path),'Having_IP':pd.Series(having_ip),
-   'URL_Length':pd.Series(len_url),'Having_@_symbol':pd.Series(having_at_symbol),
-   'Redirection_//_symbol':pd.Series(redirection_symbol),'Prefix_suffix_separation':pd.Series(prefix_suffix_separation),
-   'Sub_domains':pd.Series(sub_domains),'tiny_url':pd.Series(tiny_url), 'web_traffic': pd.Series(web_traffic),
-   'domain_registration_length':pd.Series(domain_registration_length),'dns_record':pd.Series(dns_record),
-   'statistical_report':pd.Series(statistical_report),'age_domain':pd.Series(age_domain),'http_tokens':pd.Series(http_tokens)}
+    data_col={
+        'Having_@_symbol':pd.Series(having_at_symbol),
+        'Having_IP':pd.Series(having_ip),
+        'Prefix_suffix_separation':pd.Series(prefix_suffix_separation),
+        'Redirection_//_symbol':pd.Series(redirection_symbol),
+        'Sub_domains':pd.Series(sub_domains),
+        'URL_Length':pd.Series(len_url),
+        'age_domain':pd.Series(age_domain),
+        'dns_record':pd.Series(dns_record),
+        'domain_registration_length':pd.Series(domain_registration_length),
+        'http_tokens':pd.Series(http_tokens),
+        'statistical_report':pd.Series(statistical_report),
+        'tiny_url':pd.Series(tiny_url)
+        # 'web_traffic': pd.Series(web_traffic)  
+    }
     data=pd.DataFrame(data_col)
-    data = data.drop(data.columns[[0,3,5]],axis=1)
+    # data = data.drop(data.columns[[0,3,5]],axis=1)
+    print(data.columns)
     return data
 
